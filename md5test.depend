@@ -1,0 +1,86 @@
+# depslib dependency file v1.0
+1369392131 source:/home/yin/Dev/md5test/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<sys/ipc.h>
+	<fcntl.h>
+	<sys/mman.h>
+	<sys/time.h>
+	<mqueue.h>
+	<signal.h>
+	<stdint.h>
+	"md5.h"
+
+1301233342 source:/home/yin/Dev/md5test/md5.c
+	"md5.h"
+
+1301233342 /home/yin/Dev/md5test/md5.h
+
+1369143626 source:/home/yin/Dev/md5test/main 818.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<sys/ipc.h>
+	<fcntl.h>
+	<sys/mman.h>
+	<sys/time.h>
+	<mqueue.h>
+	<signal.h>
+	<stdint.h>
+	"md5.h"
+
+1369228447 source:/home/yin/Dev/md5test/main818.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<sys/ipc.h>
+	<fcntl.h>
+	<sys/mman.h>
+	<sys/time.h>
+	<mqueue.h>
+	<signal.h>
+	<stdint.h>
+	"md5.h"
+
+1369828107 source:/home/yin/Dev/md5test/main_mq.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<sys/ipc.h>
+	<fcntl.h>
+	<sys/mman.h>
+	<sys/time.h>
+	<mqueue.h>
+	<signal.h>
+	<stdint.h>
+	"md5.h"
+
+1370009570 source:/home/yin/Dev/md5test/main_noq.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<sys/ipc.h>
+	<fcntl.h>
+	<sys/mman.h>
+	<sys/time.h>
+	<mqueue.h>
+	<signal.h>
+	<stdint.h>
+	"md5.h"
+

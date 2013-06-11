@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/ipc.h>
+#include <fcntl.h>
+
+int digit_num(int x)
+{
+    if (x >= 10000) {
+        if (x >= 10000000) {
+            return 8;
+        }
+        if (x >= 100000) {
+            if (x >= 1000000)
+                return 7;
+            return 6;
+        }
+        return 5;
+    }
+    if (x >= 100) {
+        if (x >= 1000)
+            return 4;
+        return 3;
+    }
+    if (x >= 10)
+        return 2;
+
+    return 1;
+}
+
+int main()
+{
+    unsigned int seq = 0;
+    unsigned int i=0;
+    int fifo_fd;
+    struct stat statbuf;
+
+    if(stat("/tmp/md5crack",&statbuf)==0){
+        if(remove("/tmp/md5crack") < 0)
+            perror("remove");
+    }
+
+    if(mkfifo("/tmp/md5crack",0666) < 0)
+        perror("make fifo");
+
+    createChildProcess(3);
+
+    if((fifo_fd = open("/tmp/md5crack",O_WRONLY)) < 0)
+        perror("open fifo error");
+
+    printf("iamh\n");
+    for(;seq<100000000;seq+=100){
+        int dig_num = digit_num(seq);
+        char data[9];
+        data[0] = dig_num < 6 ? 6 : dig_num;
+        int j;
+        for(j=1;j<9-dig_num;j++){
+            data[j] = '0';
+        }
+        sprintf(data+9-dig_num, "%d", seq);
+        write(fifo_fd,data,9);
+        //printf("%s\n",data+9-dig_num);
+    }
+    printf("done\n");
+    return 0;
+}
+
+void createChildProcess(int num){
+    int i=0;
+    pid_t pid;
+    for(;i<num;i++){
+        pid = fork();
+        if(pid==0){
+            /*child process begin*/
+            int fd;
+            if((fd = open("/tmp/md5crack",O_RDONLY|O_NONBLOCK)) < 0)
+                perror("error open fifo");
+            char data[9];
+            while(1){
+                while(read(fd,data,9) <= 0)
+                    ;
+
+                //printf("data is :%s\n",data+1);
+            }
+
+            /*child process end*/
+            exit(0);
+        }
+    }
+}
